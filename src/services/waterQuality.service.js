@@ -88,11 +88,11 @@ async function getAll() {
 
     /* COUND TOTAL DEBIT YESTERDAY */
     // eslint-disable-next-line max-len
-    const total_debit_yesterday = yesterdayDebitResult.reduce((sum, record) => sum + (record.diff_debit || 0), 0);
+    const total_debit_yesterday = yesterdayDebitResult.reduce((sum, record) => sum + (record.debit2 || 0), 0);
 
     /* COUND TOTAL DEBIT TODAY */
     // eslint-disable-next-line max-len
-    const total_debit_today = todayDebitResult.reduce((sum, record) => sum + (record.diff_debit || 0), 0);
+    const total_debit_today = todayDebitResult.reduce((sum, record) => sum + (record.debit2 || 0), 0);
 
     return {
       status: 200,
