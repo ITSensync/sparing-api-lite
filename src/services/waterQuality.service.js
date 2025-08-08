@@ -24,7 +24,7 @@ async function getAll() {
     // GET ALL DATA WITH BEETWEEN START AND END DATETIME
     const result = await WaterQuality.findAll({
       attributes: [
-        'id', 'unixtime', 'time', 'ph',
+        'id', 'unixtime', ['time', 'createdAt'], 'ph',
         'cod', 'tss', 'nh3n', 'debit',
         'debit2', 'stat_conn',
         'feedback'],
