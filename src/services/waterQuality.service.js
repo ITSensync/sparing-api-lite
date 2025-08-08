@@ -24,10 +24,10 @@ async function getAll() {
     // GET ALL DATA WITH BEETWEEN START AND END DATETIME
     const result = await WaterQuality.findAll({
       attributes: [
-        'id', 'ids', 'unixtime', 'ph',
+        'id', 'unixtime', 'time', 'ph',
         'cod', 'tss', 'nh3n', 'debit',
-        'diff_debit', 'rs_stat', 'status_2m', 'status_1h',
-        'feedback', 'createdAt'],
+        'debit2', 'stat_conn',
+        'feedback'],
       where: {
         createdAt: {
           [Op.between]: [todayStart, todayEnd],
@@ -41,7 +41,7 @@ async function getAll() {
     const resultToday = await WaterQuality.findAll({
       attributes: [
         'id', 'debit',
-        'diff_debit', 'createdAt'],
+        'debit2', 'time'],
       where: {
         createdAt: {
           [Op.between]: [todayStart, todayEnd],
@@ -55,7 +55,7 @@ async function getAll() {
     const resultYesterday = await WaterQuality.findAll({
       attributes: [
         'id', 'debit',
-        'diff_debit', 'createdAt'],
+        'debit2', 'time'],
       where: {
         createdAt: {
           [Op.between]: [yesterdayStart, yesterdayEnd],
@@ -114,10 +114,10 @@ async function getOne(unixtime) {
     /* GET ONE DATA BY UNIXTIME */
     const result = await WaterQuality.findOne({
       attributes: [
-        'id', 'ids', 'unixtime', 'ph',
+        'id', 'unixtime', 'time', 'ph',
         'cod', 'tss', 'nh3n', 'debit',
-        'diff_debit', 'rs_stat', 'status_2m', 'status_1h',
-        'feedback', 'createdAt'],
+        'debit2', 'stat_conn',
+        'feedback'],
       where: { unixtime },
     });
 
