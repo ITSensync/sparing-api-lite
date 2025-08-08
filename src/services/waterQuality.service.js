@@ -29,7 +29,7 @@ async function getAll() {
         'debit2', 'stat_conn',
         'feedback'],
       where: {
-        createdAt: {
+        time: {
           [Op.between]: [todayStart, todayEnd],
         },
       },
@@ -43,7 +43,7 @@ async function getAll() {
         'id', 'debit',
         'debit2', 'time'],
       where: {
-        createdAt: {
+        time: {
           [Op.between]: [todayStart, todayEnd],
         },
       },
@@ -57,7 +57,7 @@ async function getAll() {
         'id', 'debit',
         'debit2', 'time'],
       where: {
-        createdAt: {
+        time: {
           [Op.between]: [yesterdayStart, yesterdayEnd],
         },
       },
@@ -76,14 +76,14 @@ async function getAll() {
 
     /* GET YESTERDAY DEBIT DATA */
     const yesterdayDebitResult = resultYesterday.filter((record) => {
-      const createdAt = moment(record.createdAt);
-      return createdAt.isBetween(yesterdayStart, yesterdayEnd, null, []);
+      const time = moment(record.time);
+      return time.isBetween(yesterdayStart, yesterdayEnd, null, []);
     });
 
     /* GET TODAY DEBIT DATA */
     const todayDebitResult = resultToday.filter((record) => {
-      const createdAt = moment(record.createdAt);
-      return createdAt.isBetween(todayStart, todayEnd, null, []);
+      const time = moment(record.time);
+      return time.isBetween(todayStart, todayEnd, null, []);
     });
 
     /* COUND TOTAL DEBIT YESTERDAY */
@@ -152,7 +152,7 @@ async function getLatest() {
 
     const response = await WaterQuality.findOne({
       where: {
-        createdAt: {
+        time: {
           [Op.gte]: minutesAgo,
         },
       },
